@@ -3,7 +3,7 @@
   "sap.app": {
     "id": "adminasset",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
+    "i18n": "i18n/i18n.roperties",
     "applicationVersion": {
       "version": "0.0.1"
     },
@@ -160,12 +160,13 @@
         }
       ],
       "targets": {
-        "Dashboard": {
-          "type": "View",
-          "viewType": "XML",
-          "viewName": "adminasset.view.Dashboard",
-          "id": "Dashboard"
-        },
+       "Dashboard": {
+    "type": "View",
+    "viewType": "XML",
+    "viewName": "adminasset.view.Dashboard",
+    "name": "adminasset.view.Dashboard",
+    "id": "Dashboard"
+  },
         "AssetsList": {
           "type": "Component",
           "id": "AssetsList",
@@ -373,12 +374,14 @@
                     "FulfillRequest": {
                       "press": "adminasset.ext.RequestActions.fulfill",
                       "text": "Approve & assign",
-                      "enabled": "adminasset.ext.RequestActions.enabledForSingleSelect"
+                      "enabled": "adminasset.ext.RequestActions.enabledForSingleSelect",
+                      "requiresSelection":true
                     },
                     "RejectRequest": {
                       "press": "adminasset.ext.RequestActions.reject",
                       "text": "Reject request",
-                      "enabled": "adminasset.ext.RequestActions.enabledForSingleSelect"
+                      "enabled": "adminasset.ext.RequestActions.enabledForSingleSelect",
+                      "requiresSelection":true
                     }
                   }
                 }

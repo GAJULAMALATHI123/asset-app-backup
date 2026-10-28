@@ -67,6 +67,10 @@
             "type": "integer",
             "minimum": 1
         },
+        "readOnlyRootFilesystem": {
+          "$id": "#/properties/readOnlyRootFilesystem",
+          "type": "boolean"
+        },
         "image": {
             "$id": "#/properties/image",
             "title": "Image configuration",
@@ -545,6 +549,24 @@
                         "required": ["weight", "preference"]
                     }
                 }
+            }
+        },
+        "command": {
+            "$id": "#/properties/command",
+            "title": "Container command",
+            "description": "The command to run in the container. Overrides the default image entrypoint.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "args": {
+            "$id": "#/properties/args",
+            "title": "Container args",
+            "description": "Arguments to pass to the command. Overrides the default image cmd.",
+            "type": "array",
+            "items": {
+                "type": "string"
             }
         }
     },

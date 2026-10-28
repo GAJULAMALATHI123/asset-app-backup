@@ -8,7 +8,7 @@ Your services are available at:
   {{- $deployment := (get $root.Values $name) }}
   {{- if $deployment.expose.enabled }}
   {{- $ := merge (dict "name" $name "deployment" $deployment) $root }}
-  {{- $url := include "cap.deploymentHostFull" $ }}
+  {{- $url := tpl (include "cap.deploymentHostFull" $) $ }}
   {{ printf "%s - https://%s" $name $url }}
   {{- end -}}
 {{- end }}

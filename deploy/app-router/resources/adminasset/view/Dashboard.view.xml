@@ -1,0 +1,118 @@
+ <mvc:View
+  controllerName="adminasset.controller.Dashboard"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+>
+  <Page id="adminDashboardPage" title="Asset Administration" showNavButton="false">
+    <content>
+      <VBox class="adminDashboard" width="100%" renderType="Bare">
+        <VBox class="adminHero sapUiResponsiveContentPadding" width="100%">
+          <Title text="Admin dashboard" level="H1"/>
+          <Text text="Manage assets, maintenance, and organizational master data from one place."/>
+          <HBox wrap="Wrap" class="sapUiSmallMarginTop" alignItems="Center">
+            <Button text="Manage assets" icon="sap-icon://laptop" type="Emphasized" press=".onOpenAssets"/>
+            <Button text="Review maintenance" icon="sap-icon://wrench" press=".onOpenMaintenance" class="sapUiTinyMarginBegin"/>
+            <Button text="Review asset requests" icon="sap-icon://inbox" press=".onOpenRequests" class="sapUiTinyMarginBegin"/>
+            <Button text="Refresh data" icon="sap-icon://refresh" press=".onRefresh" class="sapUiTinyMarginBegin"/>
+            <Button text="Download PDF" icon="sap-icon://pdf-attachment" press=".onDownloadReport" class="sapUiTinyMarginBegin"/>
+            <!-- <Button text="Email report" icon="sap-icon://email" press=".onEmailReport" class="sapUiTinyMarginBegin"/> -->
+          </HBox>
+        </VBox>
+        <VBox class="sapUiResponsiveContentPadding" width="100%">
+          <Title text="Asset overview" level="H2" class="sapUiSmallMarginBottom"/>
+          <HBox wrap="Wrap" width="100%" class="adminKpiRow">
+            <VBox class="adminKpiCard" width="15rem">
+              <Text text="Total assets" class="adminKpiLabel"/>
+              <Title text="{summary>/total}" level="H1" class="adminKpiNumber"/>
+              <Text text="All registered assets"/>
+            </VBox>
+            <VBox class="adminKpiCard" width="15rem">
+              <Text text="Available" class="adminKpiLabel"/>
+              <Title text="{summary>/available}" level="H1" class="adminKpiNumber"/>
+              <ObjectStatus text="Ready to assign" state="Success"/>
+            </VBox>
+            <VBox class="adminKpiCard" width="15rem">
+              <Text text="Assigned" class="adminKpiLabel"/>
+              <Title text="{summary>/assigned}" level="H1" class="adminKpiNumber"/>
+              <ObjectStatus text="Currently in use" state="Information"/>
+            </VBox>
+            <VBox class="adminKpiCard" width="15rem">
+              <Text text="Maintenance" class="adminKpiLabel"/>
+              <Title text="{summary>/maintenance}" level="H1" class="adminKpiNumber"/>
+              <ObjectStatus text="Needs attention" state="Warning"/>
+            </VBox>
+            <VBox class="adminKpiCard" width="15rem">
+              <Text text="Retired" class="adminKpiLabel"/>
+              <Title text="{summary>/retired}" level="H1" class="adminKpiNumber"/>
+              <ObjectStatus text="End-of-life assets" state="Error"/>
+            </VBox>
+          </HBox>
+
+          <Title text="Lifecycle distribution" level="H2" class="sapUiLargeMarginTop sapUiSmallMarginBottom"/>
+          <VBox class="adminPanel" width="100%">
+            <Text text="Asset status distribution chart" class="sapUiTinyMarginBottom"/>
+            <Text text="Available: {summary>/available}  |  Assigned: {summary>/assigned}  |  Maintenance: {summary>/maintenance}  |  Retired: {summary>/retired}" class="sapUiSmallMarginBottom"/>
+            <VBox class="adminStatusLine">
+              <HBox justifyContent="SpaceBetween"><Text text="Available"/><Text text="{summary>/available} / {summary>/total}"/></HBox>
+              <ProgressIndicator percentValue="{summary>/availablePercent}" displayValue="{summary>/availablePercent}% available" state="Success"/>
+            </VBox>
+            <VBox class="adminStatusLine">
+              <HBox justifyContent="SpaceBetween"><Text text="Assigned"/><Text text="{summary>/assigned} / {summary>/total}"/></HBox>
+              <ProgressIndicator percentValue="{summary>/assignedPercent}" displayValue="{summary>/assignedPercent}% assigned" state="Information"/>
+            </VBox>
+            <VBox class="adminStatusLine">
+              <HBox justifyContent="SpaceBetween"><Text text="Maintenance"/><Text text="{summary>/maintenance} / {summary>/total}"/></HBox>
+              <ProgressIndicator percentValue="{summary>/maintenancePercent}" displayValue="{summary>/maintenancePercent}% in maintenance" state="Warning"/>
+            </VBox>
+            <VBox class="adminStatusLine">
+              <HBox justifyContent="SpaceBetween"><Text text="Retired"/><Text text="{summary>/retired} / {summary>/total}"/></HBox>
+              <ProgressIndicator percentValue="{summary>/retiredPercent}" displayValue="{summary>/retiredPercent}% retired" state="Error"/>
+            </VBox>
+          </VBox>
+
+          <Title text="Maintenance request status" level="H2" class="sapUiLargeMarginTop sapUiSmallMarginBottom"/>
+          <VBox class="adminPanel" width="100%">
+            <Text text="Requests by status" class="sapUiTinyMarginBottom"/>
+            <Text text="Open: {summary>/maintenanceStatus/0/count}  |  In progress: {summary>/maintenanceStatus/1/count}  |  Completed: {summary>/maintenanceStatus/2/count}" class="sapUiSmallMarginBottom"/>
+          </VBox>
+          <VBox class="adminPanel" width="100%" items="{summary>/maintenanceStatus}">
+            <items>
+              <VBox class="adminStatusLine">
+                <HBox justifyContent="SpaceBetween" alignItems="Center">
+                  <Text text="{summary>label}"/>
+                  <ObjectStatus text="{summary>count}" state="{summary>state}"/>
+                </HBox>
+                <ProgressIndicator percentValue="{summary>percent}" displayValue="{summary>percent}% of maintenance records" state="{summary>state}"/>
+              </VBox>
+            </items>
+          </VBox>
+
+          <Title text="Maintenance requests" level="H2" class="sapUiLargeMarginTop sapUiSmallMarginBottom"/>
+          <Text text="Open requests are shown here so the Admin can follow up on issues raised by users." class="sapUiTinyMarginBottom"/>
+          <Table id="maintenanceTable" items="{summary>/openRequests}" noDataText="No open maintenance requests." growing="true" growingThreshold="10">
+            <columns>
+              <Column><Text text="Asset"/></Column>
+              <Column><Text text="Type"/></Column>
+              <Column><Text text="Description"/></Column>
+              <Column><Text text="Reported date"/></Column>
+              <Column><Text text="Status"/></Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{summary>assetTag}"/>
+                  <Text text="{summary>type}"/>
+                  <Text text="{summary>description}" maxLines="2"/>
+                  <Text text="{summary>reportedDate}"/>
+                  <ObjectStatus text="{summary>status}" state="{summary>state}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+
+        </VBox>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

@@ -33,7 +33,7 @@ If release name contains chart name it will be used as a full name.
 Define a name for the Job object
 */}}
 {{- define "content-deployment.internal.jobName" -}}
-{{- printf "%s-%04d" ((include "content-deployment.internal.fullname" . ) | trunc 59) (mod .Release.Revision 1000) }}
+{{- printf "%s-%04d" ((include "content-deployment.internal.fullname" . ) | trunc 58) (mod .Release.Revision 1000) }}
 {{- end }}
 
 {{/*

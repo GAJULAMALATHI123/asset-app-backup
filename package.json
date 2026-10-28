@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3.1.2",
-    "@sap/cds-dk": "^8",
+    "@sap/cds-dk": "^10.2.0",
     "cds-plugin-ui5": "^0.17.0"
   },
   "scripts": {
@@ -28,7 +28,7 @@
         "[development]": {
           "impl": "./srv/custom-auth.js",
           "users": {
-            "alice": {
+            "asha": {
               "roles": [
                 "User"
               ],

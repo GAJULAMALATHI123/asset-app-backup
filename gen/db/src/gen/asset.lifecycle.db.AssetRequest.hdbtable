@@ -1,0 +1,17 @@
+COLUMN TABLE asset_lifecycle_db_AssetRequest (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  request_id NVARCHAR(36) NOT NULL,
+  requested_by NVARCHAR(100),
+  employee_employee_id NVARCHAR(36),
+  category_asset_category_id NVARCHAR(36),
+  reason NCLOB,
+  status NVARCHAR(5000) DEFAULT 'PENDING',
+  reviewed_by NVARCHAR(100),
+  reviewed_at TIMESTAMP,
+  review_notes NCLOB,
+  fulfilled_asset_asset_id NVARCHAR(36),
+  PRIMARY KEY(request_id)
+)

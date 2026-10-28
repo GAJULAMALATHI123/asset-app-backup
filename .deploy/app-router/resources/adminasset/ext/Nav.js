@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/Component"],function(t){"use strict";function e(e){var o=t.registry.filter(function(t){return t.getRouter&&t.getRouter()&&t.getRouter().getRoute(e)})[0];if(o){o.getRouter().navTo(e)}}return{goEmployees:function(){e("EmployeesList")},goDepartments:function(){e("DepartmentsList")},goCategories:function(){e("AssetCategoriesList")},goVendors:function(){e("VendorsList")}}});
+//# sourceMappingURL=Nav.js.map

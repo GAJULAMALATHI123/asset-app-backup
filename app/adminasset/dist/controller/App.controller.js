@@ -1,0 +1,2 @@
+sap.ui.define(["sap/fe/core/rootView/NavContainer.controller"],function(e){"use strict";return e.extend("adminasset.controller.App",{onToggleSideNav:function(){var e=this.byId("shell");e.setSideExpanded(!e.getSideExpanded())},onItemSelect:function(e){var t=e.getParameter("item").getKey();if(t){this.getOwnerComponent().getRouter().navTo(t)}}})});
+//# sourceMappingURL=App.controller.js.map

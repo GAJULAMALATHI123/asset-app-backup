@@ -221,7 +221,7 @@ annotate AssetManagerService.AssetFacts with @(
 extend service AssetManagerService with {
   @readonly entity ReportLogs as projection on db.ReportLog;
   function exportPdf(filter : String) returns LargeString;                     // base64 PDF (FR-022)
-  action   emailReport(filter : String, to : String) returns String;           // PDF by email (FR-023)
+  // action   emailReport(filter : String, to : String) returns String;           // PDF by email (FR-023)
 }
 
 annotate AssetManagerService.AssetRequests with @(

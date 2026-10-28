@@ -23,11 +23,11 @@ annotate S.Assets with @(
     { $Type: 'UI.ReferenceFacet', ID: 'History', Label: 'History', Target: 'ownershipHistory/@UI.LineItem' },
     { $Type: 'UI.ReferenceFacet', ID: 'Retirement', Label: 'Retirement', Target: '@UI.FieldGroup#Retirement' },
     { $Type: 'UI.ReferenceFacet', ID: 'Archive', Label: 'Archive', Target: 'archiveRecords/@UI.LineItem' } ],
-  UI.FieldGroup #General: { Data: [ { Value: asset_tag }, { Value: serial_number }, { Value: assetCategory_asset_category_id },
-    { Value: model }, { Value: location }, { Value: status }, { Value: current_holder_employee_id } ] },
-  UI.FieldGroup #Procurement: { Data: [ { Value: vendor_vendor_id }, { Value: purchase_date }, { Value: purchase_cost },
-    { Value: warranty_expiry }, { Value: first_distribution_date } ] },
-  UI.FieldGroup #Retirement: { Data: [ { Value: retirement_reason }, { Value: retirement_date } ] }
+  UI.FieldGroup #General: { Data: [ { Value: asset_tag,Label: 'Asset Tag' }, { Value: serial_number,Label: 'Serial Number' }, { Value: assetCategory_asset_category_id,Label: 'Category' },
+    { Value: model,Label: 'Model' }, { Value: location, Label: 'Location'  }, { Value: status,Label: 'Status'  }, { Value: current_holder_employee_id,Label: 'Current Holder' } ] },
+  UI.FieldGroup #Procurement: { Data: [ { Value: vendor_vendor_id,Label: 'Vendor' }, { Value: purchase_date,Label: 'Purchase Date' }, { Value: purchase_cost,Label: 'Purchase Cost'  },
+    { Value: warranty_expiry,Label: 'Warranty Expiry' }, { Value: first_distribution_date, Label: 'First Distribution Date' } ] },
+  UI.FieldGroup #Retirement: { Data: [ { Value: retirement_reason, Label: 'Retirement Reason' }, { Value: retirement_date,Label: 'Retirement Date' } ] }
 );
 annotate S.Assets with {
   assetCategory @(Common.Text: assetCategory.name, Common.TextArrangement: #TextOnly,

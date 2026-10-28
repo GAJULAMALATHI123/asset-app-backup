@@ -1,0 +1,427 @@
+{
+	"_version": "1.89.0",
+	"sap.app": {
+		"id": "adminasset",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			]
+		},
+		"applicationVersion": {
+			"version": "0.0.1"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "@sap/generator-fiori:lrop",
+			"version": "1.33.0",
+			"toolsId": "61603541-0fd8-4dff-88bf-202b20d1134d"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/odata/v4/admin/",
+				"type": "OData",
+				"settings": {
+					"annotations": [],
+					"odataVersion": "4.0"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": true,
+		"dependencies": {
+			"minUI5Version": "1.120.0",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.fe.templates": {},
+				"sap.tnt": {},
+				"sap.suite.ui.microchart": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "adminasset.i18n.i18n",
+					"supportedLocales": [
+						""
+					]
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties",
+				"settings": {
+					"supportedLocales": [
+						""
+					]
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/admin.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"controlId": "adminMainApp",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "Dashboard",
+					"target": "Dashboard"
+				},
+				{
+					"pattern": "Assets:?query:",
+					"name": "AssetsList",
+					"target": "AssetsList"
+				},
+				{
+					"pattern": "Assets({key}):?query:",
+					"name": "AssetsObjectPage",
+					"target": "AssetsObjectPage"
+				},
+				{
+					"name": "EmployeesList",
+					"pattern": "Employees:?query:",
+					"target": "EmployeesList"
+				},
+				{
+					"name": "EmployeesObjectPage",
+					"pattern": "Employees({key}):?query:",
+					"target": "EmployeesObjectPage"
+				},
+				{
+					"name": "DepartmentsList",
+					"pattern": "Departments:?query:",
+					"target": "DepartmentsList"
+				},
+				{
+					"name": "DepartmentsObjectPage",
+					"pattern": "Departments({key}):?query:",
+					"target": "DepartmentsObjectPage"
+				},
+				{
+					"name": "AssetCategoriesList",
+					"pattern": "AssetCategories:?query:",
+					"target": "AssetCategoriesList"
+				},
+				{
+					"name": "AssetCategoriesObjectPage",
+					"pattern": "AssetCategories({key}):?query:",
+					"target": "AssetCategoriesObjectPage"
+				},
+				{
+					"name": "VendorsList",
+					"pattern": "Vendors:?query:",
+					"target": "VendorsList"
+				},
+				{
+					"name": "VendorsObjectPage",
+					"pattern": "Vendors({key}):?query:",
+					"target": "VendorsObjectPage"
+				},
+				{
+					"pattern": "MaintenanceRecords:?query:",
+					"name": "MaintenanceList",
+					"target": "MaintenanceList"
+				},
+				{
+					"pattern": "AssetRequests:?query:",
+					"name": "AssetRequestsList",
+					"target": "AssetRequestsList"
+				}
+			],
+			"targets": {
+				"Dashboard": {
+					"type": "View",
+					"viewType": "XML",
+					"viewName": "adminasset.view.Dashboard",
+					"name": "adminasset.view.Dashboard",
+					"id": "Dashboard"
+				},
+				"AssetsList": {
+					"type": "Component",
+					"id": "AssetsList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/Assets",
+							"variantManagement": "Page",
+							"navigation": {
+								"Assets": {
+									"detail": {
+										"route": "AssetsObjectPage"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.LineItem": {
+									"tableSettings": {
+										"type": "ResponsiveTable"
+									},
+									"actions": {
+										"AssignAsset": {
+											"press": "adminasset.ext.AssetActions.assign",
+											"text": "Assign asset",
+											"enabled": "adminasset.ext.AssetActions.enabledForSingleSelect"
+										},
+										"TransferAsset": {
+											"press": "adminasset.ext.AssetActions.transfer",
+											"text": "Transfer asset",
+											"enabled": "adminasset.ext.AssetActions.enabledForSingleSelect"
+										},
+										"ReturnAsset": {
+											"press": "adminasset.ext.AssetActions.returnAsset",
+											"text": "Return asset",
+											"enabled": "adminasset.ext.AssetActions.enabledForSingleSelect"
+										},
+										"CreateMaintenance": {
+											"press": "adminasset.ext.AssetActions.createMaintenance",
+											"text": "Start maintenance",
+											"enabled": "adminasset.ext.AssetActions.enabledForSingleSelect"
+										},
+										"RetireAsset": {
+											"press": "adminasset.ext.AssetActions.retire",
+											"text": "Retire asset",
+											"enabled": "adminasset.ext.AssetActions.enabledForSingleSelect"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"AssetsObjectPage": {
+					"type": "Component",
+					"id": "AssetsObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"editableHeaderContent": false,
+							"contextPath": "/Assets"
+						}
+					}
+				},
+				"EmployeesList": {
+					"type": "Component",
+					"id": "EmployeesList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/Employees",
+							"initialLoad": "Enabled",
+							"variantManagement": "Page",
+							"navigation": {
+								"Employees": {
+									"detail": {
+										"route": "EmployeesObjectPage"
+									}
+								}
+							}
+						}
+					}
+				},
+				"EmployeesObjectPage": {
+					"type": "Component",
+					"id": "EmployeesObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"contextPath": "/Employees"
+						}
+					}
+				},
+				"DepartmentsList": {
+					"type": "Component",
+					"id": "DepartmentsList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/Departments",
+							"initialLoad": "Enabled",
+							"variantManagement": "Page",
+							"navigation": {
+								"Departments": {
+									"detail": {
+										"route": "DepartmentsObjectPage"
+									}
+								}
+							}
+						}
+					}
+				},
+				"DepartmentsObjectPage": {
+					"type": "Component",
+					"id": "DepartmentsObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"contextPath": "/Departments"
+						}
+					}
+				},
+				"AssetCategoriesList": {
+					"type": "Component",
+					"id": "AssetCategoriesList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/AssetCategories",
+							"initialLoad": "Enabled",
+							"variantManagement": "Page",
+							"navigation": {
+								"AssetCategories": {
+									"detail": {
+										"route": "AssetCategoriesObjectPage"
+									}
+								}
+							}
+						}
+					}
+				},
+				"AssetCategoriesObjectPage": {
+					"type": "Component",
+					"id": "AssetCategoriesObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"contextPath": "/AssetCategories"
+						}
+					}
+				},
+				"VendorsList": {
+					"type": "Component",
+					"id": "VendorsList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/Vendors",
+							"initialLoad": "Enabled",
+							"variantManagement": "Page",
+							"navigation": {
+								"Vendors": {
+									"detail": {
+										"route": "VendorsObjectPage"
+									}
+								}
+							}
+						}
+					}
+				},
+				"VendorsObjectPage": {
+					"type": "Component",
+					"id": "VendorsObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"contextPath": "/Vendors"
+						}
+					}
+				},
+				"MaintenanceList": {
+					"type": "Component",
+					"id": "MaintenanceList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/MaintenanceRecords",
+							"initialLoad": "Enabled",
+							"variantManagement": "Page"
+						}
+					}
+				},
+				"AssetRequestsList": {
+					"type": "Component",
+					"id": "AssetRequestsList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/AssetRequests",
+							"initialLoad": "Enabled",
+							"variantManagement": "Page",
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.LineItem": {
+									"tableSettings": {
+										"type": "ResponsiveTable",
+										"selectionMode": "Single"
+									},
+									"actions": {
+										"FulfillRequest": {
+											"press": "adminasset.ext.RequestActions.fulfill",
+											"text": "Approve & assign",
+											"enabled": "adminasset.ext.RequestActions.enabledForSingleSelect",
+											"requiresSelection": true
+										},
+										"RejectRequest": {
+											"press": "adminasset.ext.RequestActions.reject",
+											"text": "Reject request",
+											"enabled": "adminasset.ext.RequestActions.enabledForSingleSelect",
+											"requiresSelection": true
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"rootView": {
+			"viewName": "adminasset.view.App",
+			"type": "XML",
+			"id": "App",
+			"async": true
+		},
+		"flexBundle": false
+	},
+	"sap.fiori": {
+		"registrationIds": [],
+		"archeType": "transactional"
+	},
+	"sap.fe": {
+		"app": {
+			"enableLazyLoading": true
+		}
+	}
+}

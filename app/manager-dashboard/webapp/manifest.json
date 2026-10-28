@@ -183,11 +183,7 @@
                       "text": "Download PDF",
                       "enabled": true
                     },
-                    "EmailReport": {
-                      "press": "managerdashboard.ext.Nav.emailReport",
-                      "text": "Email Report",
-                      "enabled": true
-                    },
+                   
                     "RequestAsset": {
                       "press": "managerdashboard.ext.Nav.requestAsset",
                       "text": "Request asset",

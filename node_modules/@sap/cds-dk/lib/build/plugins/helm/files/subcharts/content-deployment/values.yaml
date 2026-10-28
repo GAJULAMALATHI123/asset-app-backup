@@ -14,8 +14,8 @@ global:
     _internal:
       content-deployment:
         versions:
-          1.8.0: true
-# Will be used instead of the `.Chart.Name`, e.g. when generating the Deployment name.
+          1.10.0: true
+# Will be used instead of the `.Chart.Name`, e.g. when generating the Job name.
 # nameOverride: name
 
 # Will be used as an override for the `.fullname` helper function (i.e. `.Release.Name-.Chart.Name`).
@@ -26,6 +26,9 @@ global:
 
 # The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.
 # runAsUser: 1000
+
+# Use read only filesystem for the Job.
+# readOnlyRootFilesystem: false
 image: {}
 # Should also include the image name (i.e. everything before the `:` sign).
 # repository: repo/image
@@ -125,3 +128,13 @@ annotations:
 #         operator: In
 #         values:
 #         - key-2
+
+## Container command override. See https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/
+# command:
+#   - /bin/sh
+#   - -c
+
+## Container args override. See https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/
+# args:
+#   - echo
+#   - "Hello World"

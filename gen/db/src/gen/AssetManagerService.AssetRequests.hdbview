@@ -1,0 +1,16 @@
+VIEW AssetManagerService_AssetRequests AS SELECT
+  AssetRequest_0.createdAt,
+  AssetRequest_0.createdBy,
+  AssetRequest_0.modifiedAt,
+  AssetRequest_0.modifiedBy,
+  AssetRequest_0.request_id,
+  AssetRequest_0.requested_by,
+  AssetRequest_0.employee_employee_id,
+  AssetRequest_0.category_asset_category_id,
+  AssetRequest_0.reason,
+  AssetRequest_0.status,
+  AssetRequest_0.reviewed_by,
+  AssetRequest_0.reviewed_at,
+  AssetRequest_0.review_notes,
+  AssetRequest_0.fulfilled_asset_asset_id
+FROM asset_lifecycle_db_AssetRequest AS AssetRequest_0

@@ -1,0 +1,1 @@
+{"version":3,"file":"Component.js","names":["sap","ui","define","UIComponent","extend","metadata","manifest","init","prototype","apply","this","arguments"],"sources":["Component-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CAAC,2BAA4B,SAAUC,GACnD,aACA,OAAOA,EAAYC,OAAO,0BAA2B,CACnDC,SAAU,CAAEC,SAAU,QACtBC,KAAM,WACJJ,EAAYK,UAAUD,KAAKE,MAAMC,KAAMC,UACzC,GAEJ","ignoreList":[]}

@@ -33,6 +33,14 @@ spec:
         imagePullPolicy: {{ .Values.imagePullPolicy |  default .Values.global.imagePullPolicy }}
       {{- end }}
         name: {{ include "content-deployment.internal.name" . }}
+        {{- if .Values.command }}
+        command:
+        {{- toYaml .Values.command | nindent 8 }}
+        {{- end }}
+        {{- if .Values.args }}
+        args:
+        {{- toYaml .Values.args | nindent 8 }}
+        {{- end }}
         env:
         - name: EXIT
           value: "1"
@@ -63,7 +71,7 @@ spec:
           {{- if .Values.runAsUser }}
           runAsUser: {{ .Values.runAsUser }}
           {{- end }}
-          readOnlyRootFilesystem: false
+          readOnlyRootFilesystem: {{ $.Values.readOnlyRootFilesystem | default false }}
           appArmorProfile:
             type: RuntimeDefault
         volumeMounts:

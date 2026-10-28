@@ -1,0 +1,28 @@
+{
+  "welcomeFile": "/login/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/adminasset/(.*)$",
+      "localDir": "resources"
+    },
+    {
+      "source": "^/manager-dashboard/(.*)$",
+      "localDir": "resources"
+    },
+    {
+      "source": "^/user-dashboard/(.*)$",
+      "localDir": "resources"
+    },
+    {
+      "source": "^/login/(.*)$",
+      "localDir": "resources"
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "destination": "srv-api",
+      "csrfProtection": false
+    }
+  ]
+}
