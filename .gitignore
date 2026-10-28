@@ -1,30 +1,23 @@
-node_modules
+.vscode
 
-# added by cds
-.cdsrc-private.json
+node_modules/
+target/
+_out/
+gen/
 
-# added by cds
-.cdsrc-private.json
+.default-*.json
+*.sqlite
 
-# added by cds
-.cdsrc-private.json
+mta_archives/
+*_mta_build_tmp
+*.mtar
 
-# added by cds
-.cdsrc-private.json
+.DS_Store
 
-# added by cds
-.cdsrc-private.json
+@cds-models
 
 # added by cds
 .cdsrc-private.json
 .env
 .env.*
 !.env.example
-# added by cds
-.cdsrc-private.json
-
-# added by cds
-.cdsrc-private.json
-
-# added by cds
-.cdsrc-private.json
